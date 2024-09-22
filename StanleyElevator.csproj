@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>org.squonk.stanleyelevator</AssemblyName>
+    <Product>Stenley Elevator</Product>
+    <Version>1.0.7</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+    <RootNamespace>StanleyElevator</RootNamespace>
+    <PackageOutputPath>$(OutputPath)</PackageOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Unity.Mono" Version="6.0.0-be.*" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+	<PackageReference Include="UnityEngine.Modules" Version="2023.2.6" IncludeAssets="compile" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <!-- Unity DLLs -->
+    <Reference Include="Mirror">
+      <HintPath>libs\Mirror.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>libs\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputForUIModule">
+      <HintPath>libs\UnityEngine.InputForUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>libs\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>libs\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>libs\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+
+    <!-- Game-Specific and BepInEx DLLs -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>libs\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Core">
+      <HintPath>libs\BepInEx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>libs\0Harmony.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="resources\spe.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
